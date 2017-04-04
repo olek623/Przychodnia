@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="699b4752-8c24-46fa-bb2e-fa5e2d11983c">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="kod_choroby" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT lekarstwa.nazwa, 
+lekarstwa.sklad,
+lekarstwa.przeciwwskazania, lekarstwa.skutki_uboczne, 
+choroby.nazwa_choroby 
+FROM lekarstwa JOIN leczenie ON lekarstwa.kod_lekarstwa=leczenie.kod_lekarstwa 
+JOIN choroby ON leczenie.kod_choroby=choroby.kod_choroby
+WHERE choroby.kod_choroby= $P{kod_choroby} ;]]>
+	</queryString>
+	<field name="nazwa" class="java.lang.String"/>
+	<field name="sklad" class="java.lang.String"/>
+	<field name="przeciwwskazania" class="java.lang.String"/>
+	<field name="skutki_uboczne" class="java.lang.String"/>
+	<field name="nazwa_choroby" class="java.lang.String"/>
+	<title>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="43" backcolor="#CCCCFF" uuid="aeb35570-fbd9-47f4-9d01-a68601a08c5a"/>
+				<textElement textAlignment="Center">
+					<font size="30" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwa_choroby}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="416" y="0" width="139" height="27" backcolor="#FFCC99" uuid="2e85a3d7-ff3e-42ca-9cad-b4d6a3f2cc31"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Skutki uboczne]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="154" height="27" backcolor="#FFCC99" uuid="35ad5fc3-96cb-4921-a9b8-a22af3f9b7e9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Nazwa lekarstwa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="154" y="0" width="133" height="27" backcolor="#FFCC99" uuid="5adb8da6-c067-458e-8ee0-facf9ac36b16"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Sklad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="287" y="0" width="129" height="27" backcolor="#FFCC99" uuid="b0a57740-ad15-4e95-95d6-8861c1cfa0f5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Przeciwwskazania]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="154" height="53" uuid="067636df-3fb1-4015-b61b-a50fba6c7736"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="0" width="133" height="53" uuid="a207af16-89cb-4a94-b9d9-9bd5c5a8d6e4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sklad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="0" width="129" height="53" uuid="6930dc88-7f40-4039-ab71-5653eaa24f04"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{przeciwwskazania}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="0" width="139" height="53" uuid="23a0ec81-5575-4613-8afa-547c5195b72f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skutki_uboczne}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

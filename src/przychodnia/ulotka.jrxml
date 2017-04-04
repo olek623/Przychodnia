@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="421" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="508b78b7-74d6-4ada-865d-74722ee5b2e2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="kod_lekarstwa" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT kod_lekarstwa, nazwa, sklad, przeciwwskazania, skutki_uboczne
+FROM public.lekarstwa WHERE kod_lekarstwa=$P{kod_lekarstwa};]]>
+	</queryString>
+	<field name="kod_lekarstwa" class="java.lang.Long"/>
+	<field name="nazwa" class="java.lang.String"/>
+	<field name="sklad" class="java.lang.String"/>
+	<field name="przeciwwskazania" class="java.lang.String"/>
+	<field name="skutki_uboczne" class="java.lang.String"/>
+	<title>
+		<band height="381" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="42" backcolor="#99FF99" uuid="634cd8b0-cfbf-4d81-8dbb-073085a6dbd5"/>
+				<textElement textAlignment="Center">
+					<font size="29" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="81" width="167" height="300" uuid="583bd3fd-67ef-4f4b-b753-0fb22b097855"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sklad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="81" width="192" height="300" uuid="80f9369f-2701-4e67-8359-8414c5273909"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{przeciwwskazania}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="81" width="196" height="300" uuid="6fa3be23-9109-49a9-abea-7b33d4c4194d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{skutki_uboczne}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="61" width="167" height="20" backcolor="#CCCCFF" uuid="34359a01-0ee3-4708-a0d7-39ddc02caabd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Skład:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="167" y="61" width="192" height="20" backcolor="#CCCCFF" uuid="0b5d946c-4181-4198-b611-9c8635baaba5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Przeciwwskazania:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="359" y="61" width="196" height="20" backcolor="#CCCCFF" uuid="741f2894-3615-4cf5-914a-9304a3458161"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Skutki uboczne:]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

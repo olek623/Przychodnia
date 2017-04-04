@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="3ea115c0-6b88-4532-b5d7-7f5cb85b70dd">
+	<property name="ireport.zoom" value="0.9090909090909117"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="41"/>
+	<parameter name="numer" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT pacjenci.imie AS imiepacjenta,
+pacjenci.nazwisko AS nazwiskopacjenta, 
+pacjenci.adres AS adrespacjenta, 
+lekarze.imie AS imielekarza, 
+lekarze.nazwisko AS nazwiskolekarza,
+wizyty.data_wizyty, 
+wizyty.nr_ubezpieczenia, 
+pacjenci.telefon AS telefonpacjenta, 
+lekarze.adres AS adreslekarza, 
+lekarze.telefon AS telefonlekarza 
+FROM
+wizyty JOIN lekarze ON wizyty.nr_lekarza=lekarze.nr_lekarza JOIN
+pacjenci ON pacjenci.nr_ubezpieczenia= wizyty.nr_ubezpieczenia  WHERE wizyty.nr_wizyty =$P{numer};]]>
+	</queryString>
+	<field name="imiepacjenta" class="java.lang.String"/>
+	<field name="nazwiskopacjenta" class="java.lang.String"/>
+	<field name="adrespacjenta" class="java.lang.String"/>
+	<field name="imielekarza" class="java.lang.String"/>
+	<field name="nazwiskolekarza" class="java.lang.String"/>
+	<field name="data_wizyty" class="java.sql.Date"/>
+	<field name="nr_ubezpieczenia" class="java.lang.Long"/>
+	<field name="telefonpacjenta" class="java.lang.String"/>
+	<field name="adreslekarza" class="java.lang.String"/>
+	<field name="telefonlekarza" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="189" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="38" backcolor="#CCFFCC" uuid="72c0cc13-91d9-4751-9eea-872a23d70c38"/>
+				<textElement textAlignment="Center">
+					<font size="30" isBold="true" isItalic="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Podsumowanie wizyty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="61" width="318" height="20" backcolor="#CCCCFF" uuid="e1ed411c-d40c-45ff-a515-72164ab3fd88"/>
+				<textElement>
+					<font size="15" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Dane lekarza:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="81" width="151" height="20" uuid="be3422e0-6d00-4542-aea2-f14e0f7afa5b"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imielekarza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="101" width="151" height="20" uuid="7c5cab7e-ad2d-40fc-ac22-7151d412d355"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwiskolekarza}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="318" y="61" width="237" height="20" backcolor="#CCCCFF" uuid="dc6c5996-d08a-4982-971e-f3e546e00bd4"/>
+				<textElement>
+					<font size="15" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Dane pacjenta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="318" y="101" width="136" height="20" uuid="99372160-d0de-4a6c-ac9f-ca11ffcd3073"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwiskopacjenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="81" width="136" height="20" uuid="255186b4-bb6d-4400-be69-024cdcf170fc"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{imiepacjenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="121" width="136" height="20" uuid="54541417-d3bf-4bc9-8dff-018e2140d9c5"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adrespacjenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="121" width="151" height="20" uuid="223f979b-001d-4eac-be6f-eaf467134f9b"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adreslekarza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="141" width="151" height="20" uuid="af33048c-ec9e-4231-aa39-780fa83ebf84"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefonlekarza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="141" width="136" height="20" uuid="318625ab-b0e9-4ee3-aaf1-700d7e1affab"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefonpacjenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="161" width="136" height="20" uuid="2f15b901-43d0-491d-a970-f6029f086711"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nr_ubezpieczenia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="544" splitType="Stretch">
+			<elementGroup>
+				<subreport isUsingCache="true" runToBottom="false">
+					<reportElement x="0" y="333" width="555" height="194" uuid="8330fd3e-d270-4c38-a431-7d52c6834541"/>
+					<subreportParameter name="numer">
+						<subreportParameterExpression><![CDATA[$P{numer}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["D:\\STUDIA\\rok 2 semestr 1\\BAZY DANYCH\\Przychodnia\\src\\przychodnia\\podsumowaniewizyty_subreport1.jasper"]]></subreportExpression>
+				</subreport>
+			</elementGroup>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="318" uuid="d93fbc75-ddaa-4161-bd16-55c458feb09e"/>
+				<subreportParameter name="numer">
+					<subreportParameterExpression><![CDATA[$P{numer}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["D:\\STUDIA\\rok 2 semestr 1\\BAZY DANYCH\\Przychodnia\\src\\przychodnia\\podsumowaniewizyty_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="28">
+			<staticText>
+				<reportElement mode="Opaque" x="354" y="8" width="100" height="20" backcolor="#FFFFCC" uuid="f58abdd3-7934-4949-b147-7bb0daf011ce"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Data wizyty:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Opaque" x="454" y="8" width="100" height="20" backcolor="#FFFFCC" uuid="d311d39f-1d46-42fb-922a-43ab5ee6fd6c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

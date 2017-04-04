@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="podsumowaniewizyty_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="57eaf856-fcbf-4886-b41d-d12d23a1a0ca">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numer" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+wizyty.objawy, wizyty.notatki, choroby.nazwa_choroby AS nazwachoroby  FROM
+wizyty JOIN diagnoza ON wizyty.nr_wizyty=diagnoza.nr_wizyty 
+JOIN choroby ON diagnoza.kod_choroby = choroby.kod_choroby
+WHERE wizyty.nr_wizyty =$P{numer};]]>
+	</queryString>
+	<field name="objawy" class="java.lang.String"/>
+	<field name="notatki" class="java.lang.String"/>
+	<field name="nazwachoroby" class="java.lang.String"/>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="42" backcolor="#CCFFCC" uuid="61fecc6a-3ad6-4979-9e83-3992a90ee40c"/>
+				<textElement textAlignment="Center">
+					<font size="25" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Diagnoza]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="159" height="20" backcolor="#CCCCFF" uuid="79795d09-760f-4632-861c-3a8d81054a81"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nazwa choroby:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="346" y="0" width="209" height="20" backcolor="#CCCCFF" uuid="1f38cdfe-4a7c-41e8-9c5b-0ecde902972d"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notatki:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="159" y="0" width="187" height="20" backcolor="#CCCCFF" uuid="9ce9fbe9-13d1-4342-b84d-4819ec0d3621"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Objawy:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="148" height="49" uuid="f4a1ba1b-431e-43b9-b4f5-810d9362cc56"/>
+				<textFieldExpression><![CDATA[$F{nazwachoroby}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="0" width="209" height="49" uuid="d0b8e153-cdf6-4af6-a82a-689d2d081f13"/>
+				<textFieldExpression><![CDATA[$F{notatki}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="175" height="49" uuid="f005bd87-ed46-4d83-a30c-7cc643f85ea1"/>
+				<box>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{objawy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

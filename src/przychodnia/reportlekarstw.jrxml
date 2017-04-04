@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bbc6f917-3075-4095-8ed1-9a01c471327e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT COUNT(recepta.nr_wizyty) AS ilosc, lekarstwa.nazwa FROM lekarstwa JOIN recepta ON lekarstwa.kod_lekarstwa=recepta.kod_lekarstwa JOIN wizyty ON recepta.nr_wizyty=wizyty.nr_wizyty WHERE Day(data_wizyty) > Day(Now())-30  GROUP BY nazwa]]>
+	</queryString>
+	<field name="ilosc" class="java.lang.Long"/>
+	<field name="nazwa" class="java.lang.String"/>
+	<variable name="zliczanie" class="java.lang.Number" calculation="Sum">
+		<variableExpression><![CDATA[$F{ilosc}]]></variableExpression>
+	</variable>
+	<group name="nazwa">
+		<groupExpression><![CDATA[$F{nazwa}]]></groupExpression>
+	</group>
+	<group name="ilosc">
+		<groupExpression><![CDATA[$F{ilosc}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="18" width="555" height="36" backcolor="#CCCCFF" uuid="40aedeb3-6fd7-4b05-a245-cdc8ac81be3f"/>
+				<textElement textAlignment="Center">
+					<font size="24" isItalic="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Raport Lekarstw]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="41" width="207" height="20" backcolor="#CCFFCC" uuid="3dd3b4d3-0ce0-4a48-8ff1-c8676dc4bdc3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Nazwa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="41" width="135" height="20" backcolor="#CCFFCC" uuid="3ecc876a-e839-43e1-a52b-438c71b7f07a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Ilość]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="70" y="0" width="207" height="20" backcolor="#CCFFFF" uuid="62a79bae-8349-470d-ae6c-ed9341993a9e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="277" y="0" width="135" height="20" backcolor="#CCFFFF" uuid="02c56ff0-2b74-473e-9996-bcd2ddadcebe"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ilosc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="f8e3b419-1580-455c-802a-2ecf02cd3278"/>
+				<textElement textAlignment="Right">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="bcdc878b-883b-4d2b-aacf-292f0be1610b"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="435" y="0" width="120" height="20" uuid="52f0af52-5fa3-4249-9153-b9342276b96d"/>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="0" width="207" height="20" backcolor="#FFCCCC" uuid="cb63ba6a-d4a8-4b97-80ad-3af30801db26"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Razem:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="277" y="0" width="135" height="20" backcolor="#FFCCCC" uuid="c39e67c2-8815-4e55-bd58-ce457980c91f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{zliczanie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

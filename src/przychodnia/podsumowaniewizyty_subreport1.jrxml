@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="podsumowaniewizyty_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="1ac85674-d3b1-4ca5-b7e4-39dac7292229">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="numer" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT 
+lekarstwa.nazwa AS nazwalekarstwa,
+recepta.dawka, recepta.jednostka, recepta.dawkowanie, recepta.okres  FROM
+wizyty JOIN recepta ON wizyty.nr_wizyty=recepta.nr_wizyty JOIN
+lekarstwa ON lekarstwa.kod_lekarstwa=recepta.kod_lekarstwa  WHERE wizyty.nr_wizyty = $P{numer};]]>
+	</queryString>
+	<field name="nazwalekarstwa" class="java.lang.String"/>
+	<field name="dawka" class="java.lang.String"/>
+	<field name="jednostka" class="java.lang.String"/>
+	<field name="dawkowanie" class="java.lang.String"/>
+	<field name="okres" class="java.lang.String"/>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="36" backcolor="#CCFFCC" uuid="9014a94a-9a1c-4610-9e5c-f8293d061e61"/>
+				<textElement textAlignment="Center">
+					<font size="25" isBold="true" isItalic="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Przepisane lekarstwa:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="31">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="11" width="155" height="20" backcolor="#CCCCFF" uuid="80b57b99-f64a-4ab3-8d7a-cf7f87f2f325"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Nazwa lekarstwa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="155" y="11" width="100" height="20" backcolor="#CCCCFF" uuid="8260ad0d-da88-4059-ad84-ed3ec783bfce"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Dawka:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="255" y="11" width="100" height="20" backcolor="#CCCCFF" uuid="e2f3d3d8-9915-4acc-8ec8-fe42fd621bfa"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Jednostka:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="355" y="11" width="100" height="20" backcolor="#CCCCFF" uuid="04cf283f-ebd4-4a7b-b8cb-00b6e4444629"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Dawkowanie:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="455" y="11" width="100" height="20" backcolor="#CCCCFF" uuid="51fe4114-6adc-4784-8208-b3bca0e2c625"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Okres:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="155" height="20" uuid="41446f47-926d-4e95-ac7e-adf0844960e7"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nazwalekarstwa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="0" width="100" height="20" uuid="46ff40a6-a972-49cc-ac37-07d41d200777"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dawka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="100" height="20" uuid="ca789fc8-0f59-452a-a918-8e5e98331c82"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jednostka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="20" uuid="e737ee8b-ba7b-408b-8075-cff51affaf6b"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dawkowanie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="7ada5151-363d-4ee6-96e2-0b69903b848d"/>
+				<textElement>
+					<font pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{okres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
